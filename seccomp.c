@@ -19,6 +19,8 @@
 #define MAX_BPF_SIZE 32*1024
 
 //This functions's name can be clearer to show what it actually does. "die" may be too ambiguous
+//It would be better to change this function's name to be similar to the other functions that explicitly say what they do
+//Example: print_error_then_end
 void die(const char *msg, ...)
 {
 	va_list ap;
