@@ -18,6 +18,7 @@
 
 #define MAX_BPF_SIZE 32*1024
 
+//This functions's name can be clearer to show what it actually does. "die" may be too ambiguous
 void die(const char *msg, ...)
 {
 	va_list ap;
@@ -30,6 +31,8 @@ void die(const char *msg, ...)
 
 FILE* sc_must_read_and_validate_header_from_file(const char *profile_path, struct sc_seccomp_file_header *hdr)
 {
+	//In this function, please add the necesssary validations for the fields of the hdr struct.
+	//The function's name suggests header validation, but the implementation is incompleted. Checks against supported and invalid values should be added
 	FILE *file = fopen(profile_path, "rb");
 	if (file == NULL) {
 		die("cannot open seccomp filter %s", profile_path);
@@ -46,6 +49,9 @@ FILE* sc_must_read_and_validate_header_from_file(const char *profile_path, struc
 
 void sc_must_read_filter_from_file(FILE *file, uint32_t len_bytes, struct sock_fprog *prog)
 {
+	//It would be better to add validation to the value of len_bytes within this function.
+	//Please check for len_bytes values that are not multiples of sizeof(struct sock_filter) and we should ensure that len_bytes is less that MAX_BPF_SIZE
+	//We could also check for a len_bytes value of 0 if this is not expected
 	prog->len = len_bytes / sizeof(struct sock_filter);
 	prog->filter = (struct sock_filter *)malloc(MAX_BPF_SIZE);
 	if (prog->filter == NULL) {
