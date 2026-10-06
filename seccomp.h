@@ -1,6 +1,6 @@
 #ifndef X_SECCOMP_H
 #define X_SUPPORT_H
-
+//Is this define macro intended or should it be #define X_SECCOMP_H?
 
 #include <stdio.h>
 #include <stdint.h>
